@@ -2,12 +2,13 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   border: 1px solid;
-  margin: auto;
-  position: absolute;
   margin-top: 20px;
   border-radius: 100px;
-  padding: 5px;
-  background-color: ${({color}) => color};
+  padding: 5px 0px;
+  background-color: ${({ color }) => color};
+  height: 2.5rem;
+  display: flex;
+  justify-content: space-between;
 `
 export const LargeSec = styled.div`
   border-radius: 100px;
@@ -43,5 +44,5 @@ export const BigTextBox = styled.h6`
 `
 export const Icon = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
 `
