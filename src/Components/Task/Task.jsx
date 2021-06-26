@@ -12,7 +12,7 @@ const Task = ({ name, dueDate, priority }) => {
   const [done, setDone] = useState(0);
 
   const handleColor = () => {
-    if (!done) return '#efefefff';
+    if (done) return '#efefefff';
     if (priority == "HIGH") return '#e06666ff';
     else if (priority == "MEDIUM") return '#ffd966ff';
     else if (priority == "LOW") return '##93c47dff';
@@ -33,7 +33,7 @@ const Task = ({ name, dueDate, priority }) => {
       <SmallSec >
         <Img src={alarmClock} />
         <Icon onClick={handleOnClick}>
-          {done ? <RiCheckboxBlankCircleLine size="2em"/> : <RiCheckboxCircleFill size="2em"/>}
+          {done ? <RiCheckboxCircleFill size="2em"/> : <RiCheckboxBlankCircleLine size="2em"/>}
         </Icon>
       </SmallSec>
     </Container>
