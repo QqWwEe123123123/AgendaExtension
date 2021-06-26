@@ -1,19 +1,41 @@
-import React from 'react'
-import alarmClock from '../../images/alarm-clock.png'
+import { React, useState } from 'react';
+import alarmClock from '../../images/alarm-clock.png';
+import {
+  RiCheckboxBlankCircleLine, 
+  RiCheckboxCircleFill
+} from 'react-icons/ri';
 
-import { Container,SmallSec,LargeSec,Img,TextBox } from './Task.elements'
+import { Container, SmallSec, LargeSec, Img, TextBox, BigTextBox, Icon } from './Task.elements'
 
-const Task = ({name, dueDate, dateCreated, priority}) => {
+const Task = ({ name, dueDate, priority }) => {
+
+  const [done, setDone] = useState(0);
+
+  const handleColor = () => {
+    if (!done) return '#efefefff';
+    if (priority == "HIGH") return '#e06666ff';
+    else if (priority == "MEDIUM") return '#ffd966ff';
+    else if (priority == "LOW") return '##93c47dff';
+  }
+
+  const handleOnClick = () => setDone(!done);
+
   return (
-    <Container>
+    <Container color={handleColor()}>
       <SmallSec>
-        <Img src={alarmClock}/>
         <TextBox>{dueDate}</TextBox>
       </SmallSec>
+
       <LargeSec>
-        <TextBox>{name}</TextBox>
+        <BigTextBox>{name}</BigTextBox>
       </ LargeSec>
-      <SmallSec />
+
+      <SmallSec >
+        <Img src={alarmClock} />
+        <Icon onClick={handleOnClick}>
+          {done ? <RiCheckboxBlankCircleLine size="2em"/> : <RiCheckboxCircleFill size="2em"/>}
+        </Icon>
+      </SmallSec>
     </Container>
   )
 }

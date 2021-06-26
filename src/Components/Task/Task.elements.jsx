@@ -6,38 +6,42 @@ export const Container = styled.div`
   position: absolute;
   margin-top: 20px;
   border-radius: 100px;
-  padding-bottom: 5px;
+  padding: 5px;
+  background-color: ${({color}) => color};
 `
 export const LargeSec = styled.div`
   border-radius: 100px;
-  width: 5.5em;
+  width: 6em;
   height: 2em;
   float: left;
+  display: flex;
+  align-items: center;
 `
 
 export const SmallSec = styled.div`
-  /* border: 1px red solid; */
   border-radius: 100px;
   width: 5em;
   height: 2em;
   float: left;
   margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 export const Img = styled.img`
   margin: 0.5em;
   width: 25px;
-  float: left;
 `
 
 export const TextBox = styled.h6`
   font-size: 12px;
-  margin-top: 1em;
-  float: left;
 `
 
 export const BigTextBox = styled.h6`
   font-size: 13px;
-  float: left;
-  margin: 0.5em auto;
+`
+export const Icon = styled.div`
+  display: flex;
+  justify-content: center;
 `

@@ -7,7 +7,7 @@ function App() {
     <div>
       <GlobalStyle />
       <Container>
-        <Task name="DO HW" dueDate="21:00" >
+        <Task name="DO HW" dueDate="21:00" priority="HIGH">
 
         </Task>
       </Container>

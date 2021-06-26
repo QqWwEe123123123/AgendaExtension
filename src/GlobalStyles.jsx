@@ -11,14 +11,17 @@ const GlobalStyle = createGlobalStyle`
 
 export const Container = styled.div`
   z-index: 1;
-  border: 20;
-  width: 300px; 
+  width: 350px; 
+  height: 500px;
+  
   margin-right: auto;
   margin-left: auto;
   padding-right: 25px;
   padding-left: 25px;
   border: 2px solid;
-  height: 500px;
+
+  display: flex;
+  justify-content: center;
 `
 
 export default GlobalStyle
