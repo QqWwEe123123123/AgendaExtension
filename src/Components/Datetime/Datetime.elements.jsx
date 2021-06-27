@@ -6,7 +6,7 @@ export const DateContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 1em;
+  margin: 1em auto;
 `
 
 export const Bigsec = styled.div`
@@ -33,10 +33,10 @@ export const DateText = styled.h2`
 `
 
 export const Container = styled.div`
-  flex-direction: row;
-  justify-content: space-between;
+  display: flex;
 `
 
 export const Icon = styled.div`
+  display: flex;
   align-items: center;
 `

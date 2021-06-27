@@ -2,6 +2,9 @@ import { React, useState } from 'react'
 import { TextBox, Container, Icon, DueDateContainer, PopupContainer, TextContainer, Button } from './AddTask.elements'
 import { FaPlus } from 'react-icons/fa'
 import { BsFillCalendarFill, BsListNested } from 'react-icons/bs'
+import moment from 'moment'
+
+let dateFormat = require('dateformat');
 
 const AddDueDate = ({ task, setTask, setPopUp }) => {
   return (
@@ -12,7 +15,7 @@ const AddDueDate = ({ task, setTask, setPopUp }) => {
             type="date"
             placeholder="YYYY-MM-DD"
             onChange={(event) => { setTask(prev => ({ ...prev, dueDate: event.target.value })) }}
-            value={task.dueDate === undefined ? "2021-06-26" : task.dueDate}
+            value={task.dueDate === undefined ? moment().format('L') : task.dueDate}
           />
         </TextContainer>
         <TextContainer>
@@ -20,7 +23,7 @@ const AddDueDate = ({ task, setTask, setPopUp }) => {
             type="time"
             placeholder="HH:MM:SS"
             onChange={(event) => { setTask(prev => ({ ...prev, dueTime: event.target.value })) }}
-            value={task.dueTime === undefined ? "12:32:43" : task.dueTime}
+            value={task.dueTime === undefined ? moment().format('LTS').split(" ")[0] : task.dueTime}
           />
         </TextContainer>
         <Button type="submit" value="Done" onClick={() => setPopUp(0)} />
@@ -51,7 +54,7 @@ const AddTask = ({ setNewTask }) => {
   const handleNewTask = () => {
     let obj = {
       "name": task.name,
-      "dueDate": task.dueDate,
+      "dueDate": dateFormat(task.dueDate, "mmmm dd, yyyy"),
       "dueTime": task.dueTime,
       "priority": task.priority
 
@@ -63,7 +66,7 @@ const AddTask = ({ setNewTask }) => {
   return (
     <Container>
       <Icon onClick={handleNewTask}>
-        <FaPlus />
+        <FaPlus size="2em"/>
       </Icon>
       <TextBox
         type="text"
@@ -73,10 +76,10 @@ const AddTask = ({ setNewTask }) => {
       />
 
       <Icon onClick={() => setPopUp(popUp !== 0 ? 0 : 2)} >
-        <BsListNested size="1.5em"/>
+        <BsListNested size="2.5em"/>
       </Icon>
       <Icon onClick={() => setPopUp(popUp !== 0 ? 0 : 1)}>
-        <BsFillCalendarFill />
+        <BsFillCalendarFill size="2em"/>
       </Icon>
 
       {popUp === 1 ? <AddDueDate task={task} setTask={setTask} setPopUp={setPopUp} /> : <></>}

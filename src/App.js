@@ -6,24 +6,36 @@ import moment from 'moment'
 
 import {React, useState, useEffect} from 'react'
 
-let dateFormat = require("dateformat");
-
 function App() {
 
   const [date,setDate] = useState('');
   const [day,setDay] = useState('');
+  const [dayCount, setDayCount] = useState(0);
 
   useEffect(()=> {
     setDay(moment().format('dddd'));
-    setDate(moment().format('MMMM Do YYYY'));
+    setDate(moment().format('LL'));
   },[])
+
+  useEffect(()=>{
+    setDay(moment().add(dayCount,'days').format('dddd'));
+    setDate(moment().add(dayCount,'days').format('LL'));
+  },[dayCount])
+
+  const handleBack = () => {
+    setDayCount(dayCount-1);
+  }
+
+  const handleFront = () => {
+    setDayCount(dayCount+1);
+  }
 
   return (
     <div>
       <GlobalStyle/>
       <Container>
-        <Datetime day = {day} date ={date} />
-        <DayPanel localItem={moment().format('MMMM Do YYYY')}/>
+        <Datetime day={day} date={date} handleBack={handleBack} handleFront={handleFront}/>
+        <DayPanel localItem={date}/>
       </Container>
     </div>
   );
