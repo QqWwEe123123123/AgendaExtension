@@ -46,3 +46,7 @@ export const Icon = styled.div`
   display: flex;
   justify-content: flex-end;
 `
+export const Trash = styled.div`
+  display: flex;
+  justify-content: middle;
+`
