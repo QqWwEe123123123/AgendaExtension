@@ -9,6 +9,9 @@ export const Container = styled.div`
   height: 2.5rem;
   display: flex;
   justify-content: space-between;
+  &:hover {
+    box-shadow: 8px 2px 21px thistle;
+  }
 `
 export const LargeSec = styled.div`
   border-radius: 100px;
@@ -45,4 +48,5 @@ export const BigTextBox = styled.h6`
 export const Icon = styled.div`
   display: flex;
   justify-content: flex-end;
+  cursor: pointer;
 `

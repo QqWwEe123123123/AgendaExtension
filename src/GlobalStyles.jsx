@@ -20,6 +20,7 @@ export const Container = styled.div`
   padding-left: 25px;
   border: 2px solid;
   justify-content: center;
+  position: relative;
 `
 
 export default GlobalStyle

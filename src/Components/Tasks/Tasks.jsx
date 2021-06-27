@@ -1,11 +1,21 @@
 import React from 'react'
 import { Task } from '../../Components'
 
-const Tasks = ({ list }) => {
-    list = sort_by_priority(list);
+const Tasks = ({ toDos,setToDos }) => {
+
+    const handleComplete = (task) => {
+        toDos.forEach(t => {
+            if (t === task) {
+                t.complete = !t.complete;
+            }
+        })
+        setToDos([...toDos])
+    }
+
+    toDos = sort_by_priority(toDos);
     return (
-        list.map(task => {
-            return (<Task name={task.name} dueDate={task.dueDate} priority={task.priority} />)
+        toDos.map(task => {
+            return (<Task task={task} handleComplete={handleComplete} complete={task.complete} />)
         })
     )
 }
@@ -20,6 +30,7 @@ function sort_by_priority(list) {
         else if (task.priority === "LOW") tempList.push(task);
     })
     sortedList.push(...tempList);
+
     return sortedList;
 }
 

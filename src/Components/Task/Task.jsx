@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import React from 'react';
 import alarmClock from '../../images/alarm-clock.png';
 import {
   RiCheckboxBlankCircleLine,
@@ -15,33 +15,29 @@ import {
   Icon,
 } from './Task.elements'
 
-const Task = ({ name, dueDate, priority }) => {
-
-  const [done, setDone] = useState(0);
+const Task = ({ task, handleComplete,complete }) => {
 
   const handleColor = () => {
-    if (done) return '#efefefff';
-    if (priority === "HIGH") return '#e06666ff';
-    else if (priority === "MEDIUM") return '#ffd966ff';
-    else if (priority === "LOW") return '#93c47dff';
+    if (complete) return '#efefefff';
+    if (task.priority === "HIGH") return '#e06666ff';
+    else if (task.priority === "MEDIUM") return '#ffd966ff';
+    else if (task.priority === "LOW") return '#93c47dff';
   }
-
-  const handleOnClick = () => setDone(!done);
 
   return (
     <Container color={handleColor()}>
       <SmallSec>
-        <TextBox>{dueDate}</TextBox>
+        <TextBox>{task.dueTime}</TextBox>
       </SmallSec>
 
       <LargeSec>
-        <BigTextBox>{name}</BigTextBox>
+        <BigTextBox>{task.name}</BigTextBox>
       </ LargeSec>
 
       <SmallSec >
         <Img src={alarmClock} />
-        <Icon onClick={handleOnClick}>
-          {done ? <RiCheckboxCircleFill size="2em" /> : <RiCheckboxBlankCircleLine size="2em" />}
+        <Icon onClick={() => handleComplete(task)}>
+          {complete ? <RiCheckboxCircleFill size="2em" /> : <RiCheckboxBlankCircleLine size="2em" />}
         </Icon>
       </SmallSec>
     </Container>
