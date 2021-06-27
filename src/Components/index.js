@@ -3,3 +3,4 @@ export { default as Tasks } from './Tasks/Tasks'
 export { default as DayPanel } from './DayPanel/DayPanel'
 export { default as AddTask } from './AddTask/AddTask'
 
+export { default as Datetime } from './Datetime/Datetime'

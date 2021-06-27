@@ -50,3 +50,7 @@ export const Icon = styled.div`
   justify-content: flex-end;
   cursor: pointer;
 `
+export const Trash = styled.div`
+  display: flex;
+  justify-content: middle;
+`
