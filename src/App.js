@@ -1,6 +1,8 @@
 import { Tasks } from './Components'
 import { Container } from './GlobalStyles'
+import { Datetime } from './Components'
 import GlobalStyle from './GlobalStyles'
+
 
 function App() {
 
@@ -26,6 +28,9 @@ function App() {
     <div>
       <GlobalStyle/>
       <Container>
+        <Datetime day = "Today "date ="January 1">
+          
+        </Datetime>
         <Tasks list={toDos}/>
       </Container>
     </div>
