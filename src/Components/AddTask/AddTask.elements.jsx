@@ -37,7 +37,7 @@ export const DueDateContainer = styled.div`
   position: absolute;
   z-index: 1;
   bottom: 125%;
-  margin-left: -80px;
+  margin-left: -250px;
   margin-bottom: 30px;
   
   &:hover {

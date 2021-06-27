@@ -1,7 +1,8 @@
 import React from 'react'
 import { Task } from '../../Components'
+import {Container} from './Tasks.elements'
 
-const Tasks = ({ toDos,setToDos }) => {
+const Tasks = ({ toDos, setToDos }) => {
 
     const handleComplete = (task) => {
         toDos.forEach(t => {
@@ -9,14 +10,23 @@ const Tasks = ({ toDos,setToDos }) => {
                 t.complete = !t.complete;
             }
         })
-        setToDos([...toDos])
+        setToDos([...toDos]);
+    }
+
+    const handleDelete = (task) => {
+        const taskIDX = toDos.indexOf(task);
+        toDos.splice(taskIDX, 1);
+
+        setToDos([...toDos]);
     }
 
     toDos = sort_by_priority(toDos);
     return (
-        toDos.map(task => {
-            return (<Task task={task} handleComplete={handleComplete} complete={task.complete} />)
-        })
+        <Container>
+            {toDos.map(task => {
+                return (<Task task={task} handleComplete={handleComplete} handleDelete={handleDelete} complete={task.complete} />)
+            })}
+        </Container>
     )
 }
 

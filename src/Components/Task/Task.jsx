@@ -1,5 +1,4 @@
 import React from 'react';
-import alarmClock from '../../images/alarm-clock.png';
 import {
   RiCheckboxBlankCircleLine,
   RiCheckboxCircleFill,
@@ -12,15 +11,13 @@ import {
 import {
   Container,
   SmallSec,
-  LargeSec, 
-  Img, 
-  TextBox, 
-  BigTextBox, 
+  LargeSec,
+  TextBox,
+  BigTextBox,
   Icon,
-  Trash,
 } from './Task.elements'
 
-const Task = ({ task, handleComplete,complete }) => {
+const Task = ({ task, handleComplete, handleDelete, complete }) => {
 
   const handleColor = () => {
     if (complete) return '#efefefff';
@@ -40,10 +37,9 @@ const Task = ({ task, handleComplete,complete }) => {
       </ LargeSec>
 
       <SmallSec >
-        <Img src={alarmClock} />
-        <Trash>
-          {<BsFillTrashFill size ="1.6em" />}
-        </Trash>
+        <Icon onClick={() => handleDelete(task)}>
+          {<BsFillTrashFill size="1.6em" />}
+        </Icon>
         <Icon onClick={() => handleComplete(task)}>
           {complete ? <RiCheckboxCircleFill size="2em" /> : <RiCheckboxBlankCircleLine size="2em" />}
         </Icon>

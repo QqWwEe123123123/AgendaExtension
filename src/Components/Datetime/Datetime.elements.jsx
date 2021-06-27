@@ -1,49 +1,42 @@
 import styled from 'styled-components'
 
 
-export const Container = styled.div`
-  box-sizing: border-box;
-  width: 100%;
+export const DateContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1em;
+  flex-direction: column;
   margin: 1em;
-  background-color: rgb(192, 45, 26);
 `
-
 
 export const Bigsec = styled.div`
-  box-sizing: border-box;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1em;
-  margin: 1em;
-  background-color: rgb(192, 45, 26);
 `
-
 
 export const Smallsec = styled.div`
-  box-sizing: border-box;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1em;
-  margin: 1em;
-  background-color: rgb(192, 45, 26);
 `
-
 
 export const Titles = styled.h1`
   font-size: 18px;
-  color: #fff;
+  color: #000;
 `
-
 
 export const DateText = styled.h2`
   font-size: 12px;
-  color: #fff;
+  color: #000;
+`
+
+export const Container = styled.div`
+  flex-direction: row;
+  justify-content: space-between;
+`
+
+export const Icon = styled.div`
+  align-items: center;
 `
