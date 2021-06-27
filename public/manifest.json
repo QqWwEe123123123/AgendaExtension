@@ -1,15 +1,11 @@
 {
-  "name": "Agenda Extensions",
-  "description": "Agenda Extensions",
+  "name": "TimeWise",
+  "description": "A Agenda Extensions",
   "version": "1.0",
   "manifest_version": 2,
   "browser_action": {
     "default_popup": "index.html",
-    "default_title": "Agenda Extensions"
-  },
-  "icons": {
-    "16": "logo192.png",
-    "48": "logo192.png",
-    "128": "logo192.png"
+    "default_title": "TimeWise",
+    "default_logo": "logo.png"
   }
 }
