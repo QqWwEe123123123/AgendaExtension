@@ -1,55 +1,114 @@
-import { React, useState } from 'react'
-import { TextBox, Container, Icon, DueDateContainer, PopupContainer, TextContainer, Button } from './AddTask.elements'
+import React, { useRef, useState, useEffect } from 'react'
+import {
+  TextBox,
+  TextContainer,
+  Container,
+  Icon,
+  Button,
+  Background,
+  PopUpContent,
+  PopUpTextBox,
+  PopUpTextWrapper,
+  Caption,
+} from './AddTask.elements'
 import { FaPlus } from 'react-icons/fa'
 import { BsFillCalendarFill, BsListNested } from 'react-icons/bs'
+import { ImCross } from 'react-icons/im'
 import moment from 'moment'
+import Aos from 'aos'
+import 'aos/dist/aos.css/'
 
 let dateFormat = require('dateformat');
 
-const AddDueDate = ({ task, setTask, setPopUp }) => {
+const AddDueDate = ({ task, setTask, setPopUp, popUp }) => {
+  const popUpRef = useRef();
+
+  const closePopUp = e => {
+    if (popUpRef.current === e.target) {
+      setPopUp(0);
+    }
+  };
+
+  useEffect(() => {
+    //Animate on Scroll
+    Aos.init({ duration: 1000, once: true });
+  }, [popUp])
+
+
   return (
-    <PopupContainer>
-      <DueDateContainer>
-        <TextContainer>
-          <TextBox
-            type="date"
-            placeholder="YYYY-MM-DD"
-            onChange={(event) => { setTask(prev => ({ ...prev, dueDate: event.target.value })) }}
-            value={task.dueDate === undefined ? moment().format('L') : task.dueDate}
-          />
-        </TextContainer>
-        <TextContainer>
-          <TextBox
-            type="time"
-            placeholder="HH:MM:SS"
-            onChange={(event) => { setTask(prev => ({ ...prev, dueTime: event.target.value })) }}
-            value={task.dueTime === undefined ? moment().format('LTS').split(" ")[0] : task.dueTime}
-          />
-        </TextContainer>
-        <Button type="submit" value="Done" onClick={() => setPopUp(0)} />
-      </DueDateContainer>
-    </PopupContainer>
+    <>
+      {popUp === 1 ? <Background onClick={closePopUp} ref={popUpRef}>
+        <PopUpContent data-aos='fade-down'>
+          <PopUpTextWrapper>
+            <PopUpTextBox
+              type="date"
+              placeholder="YYYY-MM-DD"
+              onChange={(event) => { setTask(prev => ({ ...prev, dueDate: event.target.value })) }}
+              value={task.dueDate === undefined ? moment().format('L') : task.dueDate}
+            />
+          </PopUpTextWrapper>
+          <PopUpTextWrapper>
+            <PopUpTextBox
+              type="time"
+              placeholder="HH:MM:SS"
+              onChange={(event) => { setTask(prev => ({ ...prev, dueTime: event.target.value })) }}
+              value={task.dueTime === undefined ? moment().format('LTS').split(" ")[0] : task.dueTime}
+            />
+          </PopUpTextWrapper>
+          <PopUpTextWrapper>
+            <Icon>
+              <ImCross onClick={() => setPopUp(0)} size='1em' />
+            </Icon>
+          </PopUpTextWrapper>
+        </PopUpContent>
+      </Background> : null}
+    </>
   );
 }
 
-const AddPriority = ({ setTask, setPopUp }) => {
+const AddPriority = ({ setTask, popUp, setPopUp }) => {
+  const popUpRef = useRef();
+
+  useEffect(() => {
+    //Animate on Scroll
+    Aos.init({ duration: 1000, once: true });
+  }, [popUp])
+
+  const closePopUp = e => {
+    if (popUpRef.current === e.target) {
+      setPopUp(0);
+    }
+  };
+
+  const handleClose = (priority) => {
+    setPopUp(0);
+    setTask(prev => ({ ...prev, priority: priority }));
+  }
+
   return (
-    <PopupContainer>
-      <DueDateContainer>
-        <Button type="submit" value="HIGH" onClick={() => {setPopUp(0); setTask(prev => ({ ...prev, priority: "HIGH" })); }} />
-        <Button type="submit" value="MEDIUM" onClick={() => {setPopUp(0); setTask(prev => ({ ...prev, priority: "MEDIUM" })); }} />
-        <Button type="submit" value="LOW" onClick={() => {setPopUp(0); setTask(prev => ({ ...prev, priority: "LOW" })); }} />
-      </DueDateContainer>
-    </PopupContainer>
+    <>
+      {popUp === 2 ? <Background onClick={closePopUp} ref={popUpRef}>
+        <PopUpContent data-aos='fade-down' style={{ height: '15em' }}>
+          <Button type="submit" value="HIGH" onClick={() => handleClose("HIGH")} color={'#cc0000ff'} />
+          <Button type="submit" value="MEDIUM" onClick={() => handleClose("MEDIUM")} color={'#f1c232ff'} />
+          <Button type="submit" value="LOW" onClick={() => handleClose("LOW")} color={'#6aa84fff'} />
+        </PopUpContent>
+      </Background > : null}
+    </>
   );
 }
 
 const AddTask = ({ setNewTask }) => {
 
   const [popUp, setPopUp] = useState(0);
+  const [showCaption, setShowCaption] = useState(0);
 
   const [task, setTask] = useState({ name: '', dueDate: "2021-06-26", dueTime: "12:32:43", priority: "LOW", complete: 0 });
 
+  useEffect(() => {
+    //Animate on Scroll
+    Aos.init({ duration: 500, once: true });
+  }, [showCaption])
 
   const handleNewTask = () => {
     let obj = {
@@ -64,30 +123,45 @@ const AddTask = ({ setNewTask }) => {
   }
 
   return (
-    <Container>
-      <Icon onClick={handleNewTask}>
-        <FaPlus size="2em"/>
-      </Icon>
-      <TextBox
-        type="text"
-        value={task.name}
-        placeholder="Add a Task"
-        onChange={(event) => { setTask(prev => ({ ...prev, name: event.target.value })) }}
-      />
+    <>
+      <Container>
+        <TextContainer>
+          <Icon onClick={handleNewTask}>
+            <FaPlus size="1.5em" />
+          </Icon>
+          <TextBox
+            type="text"
+            value={task.name}
+            placeholder="Add a Task"
+            onChange={(event) => { setTask(prev => ({ ...prev, name: event.target.value })) }}
+          />
 
-      <Icon onClick={() => setPopUp(popUp !== 0 ? 0 : 2)} >
-        <BsListNested size="2.5em"/>
-      </Icon>
-      <Icon onClick={() => setPopUp(popUp !== 0 ? 0 : 1)}>
-        <BsFillCalendarFill size="2em"/>
-      </Icon>
+          <Icon
+            onClick={() => setPopUp(popUp !== 0 ? 0 : 2)}
+            onMouseEnter={() => setShowCaption(2)}
+            onMouseLeave={() => setShowCaption(0)} >
+            <BsListNested size="2em" />
+            {showCaption === 2 ? <Caption data-aos="zoom-in">
+              Priority
+            </Caption> : <></>}
+          </Icon>
+          <Icon
+            onClick={() => setPopUp(popUp !== 0 ? 0 : 1)}
+            onMouseEnter={() => setShowCaption(1)}
+            onMouseLeave={() => setShowCaption(0)}>
+            <BsFillCalendarFill size="1.5em" />
+            {showCaption === 1 ? <Caption data-aos="zoom-in">
+              Due Date
+            </Caption> : <></>}
+          </Icon>
+        </TextContainer>
+      </Container>
 
-      {popUp === 1 ? <AddDueDate task={task} setTask={setTask} setPopUp={setPopUp} /> : <></>}
-
-      {popUp === 2 ? <AddPriority setTask={setTask} setPopUp={setPopUp} /> : <></>}
-
-    </Container>
+      <AddDueDate task={task} setTask={setTask} popUp={popUp} setPopUp={setPopUp} ></AddDueDate>
+      <AddPriority setTask={setTask} popUp={popUp} setPopUp={setPopUp} />
+    </>
   )
 }
 
 export default AddTask
+

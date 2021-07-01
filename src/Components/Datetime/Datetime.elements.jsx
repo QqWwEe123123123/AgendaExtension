@@ -39,4 +39,5 @@ export const Container = styled.div`
 export const Icon = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
 `

@@ -31,13 +31,13 @@ function App() {
   }
 
   return (
-    <div>
+    <>
       <GlobalStyle/>
       <Container>
         <Datetime day={day} date={date} handleBack={handleBack} handleFront={handleFront}/>
         <DayPanel localItem={date}/>
       </Container>
-    </div>
+    </>
   );
 }
 
