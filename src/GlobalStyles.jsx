@@ -24,7 +24,13 @@ export const Container = styled.div`
 
   border: 2px solid;
 
+  margin-top: 5%;
   background-color: #a8dadcff;
+
+  // for testing purposes
+  @media (max-width: 768px) {
+    margin-top: 0%;
+  }
 `
 
 export default GlobalStyle
