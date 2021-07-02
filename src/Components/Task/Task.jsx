@@ -27,7 +27,7 @@ const Task = ({ task, handleComplete, handleDelete, complete }) => {
   }
 
   return (
-    <Container color={() => handleColor}>
+    <Container color={handleColor}>
       <SmallSec>
         <TextBox>{task.dueTime}</TextBox>
       </SmallSec>

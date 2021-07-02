@@ -34,6 +34,10 @@ export const Icon = styled.div`
   margin: auto;
   padding: 4px;
   cursor: pointer;
+
+  &:hover {
+    transform: translateY(-10%);
+  }
 `
 // popUp ------------------------------------------------------
 
@@ -91,27 +95,38 @@ export const PopUpTextWrapper = styled.div`
 `
 
 export const Button = styled.input`
+  display: inline-block;
+  outline: 0;
   cursor: pointer;
-  border-radius: 10px;
-  width: 85%;
-  padding: 12px;
-  margin: 10px 5px;
-  background-color: ${({ color }) => color};
   border: none;
-  &:hover {
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 0 56px;
+  margin: 5px;
+  width: 85%;
+  height: 45px;
+  line-height: 45px;
+  border-radius: 7px;
+  background-color: ${({ color }) => color};
+  color: white;
+  font-weight: 400;
+  font-size: 16px;
+  box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
+  transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
+
+  :hover{
+    background-color: ${({ HLcolor }) => HLcolor};
+    box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
+    color: #000;
   }
 `
 
-export const Caption = styled.caption`
+export const Caption = styled.div`
   position: absolute;
   width: 30%;
   border: 1px solid black;
-  box-sizing: border-box;
   bottom: 100%;
   right: 5px;
   background-color: #1D3557;
   color: #fff;
   border-radius: 3px;
+  text-align: center;
 `
-

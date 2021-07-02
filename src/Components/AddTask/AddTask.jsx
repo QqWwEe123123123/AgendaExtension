@@ -90,9 +90,9 @@ const AddPriority = ({ setTask, popUp, setPopUp }) => {
     <>
       {popUp === 2 ? <Background onClick={closePopUp} ref={popUpRef}>
         <PopUpContent data-aos='fade-down' style={{ height: '15em' }}>
-          <Button type="submit" value="HIGH" onClick={() => handleClose("HIGH")} color={'#cc0000ff'} />
-          <Button type="submit" value="MEDIUM" onClick={() => handleClose("MEDIUM")} color={'#f1c232ff'} />
-          <Button type="submit" value="LOW" onClick={() => handleClose("LOW")} color={'#6aa84fff'} />
+          <Button type="submit" value="HIGH" onClick={() => handleClose("HIGH")} color={'#cc0000ff'} HLcolor={'#cc0000c0'}/>
+          <Button type="submit" value="MEDIUM" onClick={() => handleClose("MEDIUM")} color={'#f1c232ff'} HLcolor={'#f1c232c0'}/>
+          <Button type="submit" value="LOW" onClick={() => handleClose("LOW")} color={'#6aa84fff'} HLcolor={'#6aa84fc0'}/>
         </PopUpContent>
       </Background > : null}
     </>
@@ -137,19 +137,19 @@ const AddTask = ({ setNewTask }) => {
             onMouseEnter={() => setShowCaption(2)}
             onMouseLeave={() => setShowCaption(0)} >
             <BsListNested size="2em" />
-            {showCaption === 2 ? <Caption>
+          </Icon>
+          {showCaption === 2 ? <Caption>
               Priority
             </Caption> : null}
-          </Icon>
           <Icon
             onClick={() => setPopUp(popUp !== 0 ? 0 : 1)}
             onMouseEnter={() => setShowCaption(1)}
             onMouseLeave={() => setShowCaption(0)}>
             <BsFillCalendarFill size="1.5em" />
-            {showCaption === 1 ? <Caption>
+          </Icon>
+          {showCaption === 1 ? <Caption>
               Due Date
             </Caption> : null}
-          </Icon>
         </TextContainer>
       </Container>
 

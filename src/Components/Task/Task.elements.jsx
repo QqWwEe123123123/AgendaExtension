@@ -4,7 +4,6 @@ export const Container = styled.div`
   border: 1px solid;
   margin-top: 20px;
   border-radius: 100px;
-  padding: 5px 0px;
   background-color: ${({ color }) => color};
   height: 2.5rem;
   display: flex;
@@ -17,6 +16,7 @@ export const LargeSec = styled.div`
   border-radius: 100px;
   width: 6em;
   height: 2em;
+  margin: auto;
   float: left;
   display: flex;
   align-items: center;
