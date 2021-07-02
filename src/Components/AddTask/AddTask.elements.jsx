@@ -110,7 +110,8 @@ export const Caption = styled.caption`
   box-sizing: border-box;
   bottom: 100%;
   right: 5px;
-  background-color: #f1faeeff;
+  background-color: #1D3557;
+  color: #fff;
   border-radius: 3px;
 `
 

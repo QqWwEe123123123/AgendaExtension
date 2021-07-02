@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
+import { useSpring, animated } from 'react-spring';
 import {
   TextBox,
   TextContainer,
@@ -105,11 +106,6 @@ const AddTask = ({ setNewTask }) => {
 
   const [task, setTask] = useState({ name: '', dueDate: "2021-06-26", dueTime: "12:32:43", priority: "LOW", complete: 0 });
 
-  useEffect(() => {
-    //Animate on Scroll
-    Aos.init({ duration: 500, once: true });
-  }, [showCaption])
-
   const handleNewTask = () => {
     let obj = {
       "name": task.name,
@@ -141,18 +137,18 @@ const AddTask = ({ setNewTask }) => {
             onMouseEnter={() => setShowCaption(2)}
             onMouseLeave={() => setShowCaption(0)} >
             <BsListNested size="2em" />
-            {showCaption === 2 ? <Caption data-aos="zoom-in">
+            {showCaption === 2 ? <Caption>
               Priority
-            </Caption> : <></>}
+            </Caption> : null}
           </Icon>
           <Icon
             onClick={() => setPopUp(popUp !== 0 ? 0 : 1)}
             onMouseEnter={() => setShowCaption(1)}
             onMouseLeave={() => setShowCaption(0)}>
             <BsFillCalendarFill size="1.5em" />
-            {showCaption === 1 ? <Caption data-aos="zoom-in">
+            {showCaption === 1 ? <Caption>
               Due Date
-            </Caption> : <></>}
+            </Caption> : null}
           </Icon>
         </TextContainer>
       </Container>
