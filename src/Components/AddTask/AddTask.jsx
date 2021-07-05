@@ -15,11 +15,11 @@ import {
 import { FaPlus } from 'react-icons/fa'
 import { BsFillCalendarFill, BsListNested } from 'react-icons/bs'
 import { ImCross } from 'react-icons/im'
-import moment from 'moment'
 import Aos from 'aos'
 import 'aos/dist/aos.css/'
 
 let dateFormat = require('dateformat');
+let now = new Date();
 
 const AddDueDate = ({ task, setTask, setPopUp, popUp }) => {
   const popUpRef = useRef();
@@ -35,7 +35,6 @@ const AddDueDate = ({ task, setTask, setPopUp, popUp }) => {
     Aos.init({ duration: 1000, once: true });
   }, [popUp])
 
-
   return (
     <>
       {popUp === 1 ? <Background onClick={closePopUp} ref={popUpRef}>
@@ -45,7 +44,7 @@ const AddDueDate = ({ task, setTask, setPopUp, popUp }) => {
               type="date"
               placeholder="YYYY-MM-DD"
               onChange={(event) => { setTask(prev => ({ ...prev, dueDate: event.target.value })) }}
-              value={task.dueDate === undefined ? moment().format('L') : task.dueDate}
+              value={task.dueDate}
             />
           </PopUpTextWrapper>
           <PopUpTextWrapper>
@@ -53,7 +52,7 @@ const AddDueDate = ({ task, setTask, setPopUp, popUp }) => {
               type="time"
               placeholder="HH:MM:SS"
               onChange={(event) => { setTask(prev => ({ ...prev, dueTime: event.target.value })) }}
-              value={task.dueTime === undefined ? moment().format('LTS').split(" ")[0] : task.dueTime}
+              value={task.dueTime}
             />
           </PopUpTextWrapper>
           <PopUpTextWrapper>
@@ -90,9 +89,9 @@ const AddPriority = ({ setTask, popUp, setPopUp }) => {
     <>
       {popUp === 2 ? <Background onClick={closePopUp} ref={popUpRef}>
         <PopUpContent data-aos='fade-down' style={{ height: '15em' }}>
-          <Button type="submit" value="HIGH" onClick={() => handleClose("HIGH")} color={'#cc0000ff'} HLcolor={'#cc0000c0'}/>
-          <Button type="submit" value="MEDIUM" onClick={() => handleClose("MEDIUM")} color={'#f1c232ff'} HLcolor={'#f1c232c0'}/>
-          <Button type="submit" value="LOW" onClick={() => handleClose("LOW")} color={'#6aa84fff'} HLcolor={'#6aa84fc0'}/>
+          <Button type="submit" value="HIGH" onClick={() => handleClose("HIGH")} color={'#cc0000ff'} HLcolor={'#cc0000c0'} />
+          <Button type="submit" value="MEDIUM" onClick={() => handleClose("MEDIUM")} color={'#f1c232ff'} HLcolor={'#f1c232c0'} />
+          <Button type="submit" value="LOW" onClick={() => handleClose("LOW")} color={'#6aa84fff'} HLcolor={'#6aa84fc0'} />
         </PopUpContent>
       </Background > : null}
     </>
@@ -104,25 +103,43 @@ const AddTask = ({ setNewTask }) => {
   const [popUp, setPopUp] = useState(0);
   const [showCaption, setShowCaption] = useState(0);
 
-  const [task, setTask] = useState({ name: '', dueDate: "2021-06-26", dueTime: "12:32:43", priority: "LOW", complete: 0 });
+  const [task, setTask] = useState(
+    {
+      name: '',
+      dueDate: dateFormat(now, "isoDate"),
+      dueTime: dateFormat(now, "isoTime"),
+      priority: "LOW",
+      complete: 0,
+    }
+  );
 
-  const handleNewTask = () => {
+  const FormatDate = (date) => date.replace(/-/g, '\/')
+
+  const HandleNewTask = () => {
     let obj = {
-      "name": task.name,
-      "dueDate": dateFormat(task.dueDate, "mmmm dd, yyyy"),
-      "dueTime": task.dueTime,
-      "priority": task.priority
-
+      name: task.name,
+      dueDate: dateFormat(FormatDate(task.dueDate), "longDate"),
+      dueTime: task.dueTime,
+      priority: task.priority
     };
     setNewTask(obj);
-    setTask(prev => ({ ...prev, name: '', dueDate: "2021-06-26", dueTime: "12:32:43", priority: "LOW", complete: 0 }));
+    // Reset
+    setTask(prev => (
+      {
+        ...prev,
+        name: '',
+        dueDate: dateFormat(now, "isoDate"),
+        dueTime: dateFormat(now, "isoTime"),
+        priority: "LOW",
+        complete: 0
+      }));
   }
 
   return (
     <>
       <Container>
         <TextContainer>
-          <Icon onClick={handleNewTask}>
+          <Icon onClick={HandleNewTask}>
             <FaPlus size="1.5em" />
           </Icon>
           <TextBox
@@ -139,8 +156,8 @@ const AddTask = ({ setNewTask }) => {
             <BsListNested size="2em" />
           </Icon>
           {showCaption === 2 ? <Caption>
-              Priority
-            </Caption> : null}
+            Priority
+          </Caption> : null}
           <Icon
             onClick={() => setPopUp(popUp !== 0 ? 0 : 1)}
             onMouseEnter={() => setShowCaption(1)}
@@ -148,8 +165,8 @@ const AddTask = ({ setNewTask }) => {
             <BsFillCalendarFill size="1.5em" />
           </Icon>
           {showCaption === 1 ? <Caption>
-              Due Date
-            </Caption> : null}
+            Due Date
+          </Caption> : null}
         </TextContainer>
       </Container>
 
@@ -160,4 +177,3 @@ const AddTask = ({ setNewTask }) => {
 }
 
 export default AddTask
-

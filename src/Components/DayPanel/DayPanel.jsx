@@ -3,34 +3,49 @@ import { React, useEffect, useState } from 'react'
 import { Tasks } from '../../Components'
 import { AddTask } from '../../Components'
 
-const DayPanel = ({ localItem }) => {
+const DayPanel = ({ date }) => {
 
   const [toDos, setToDos] = useState([]);
   const [newTask, setNewTask] = useState({});
 
-  useEffect(() => {
-    const storedToDoList = JSON.parse(localStorage.getItem(localItem))
+  const LoadToDos = () => {
+    if (localStorage.getItem(date) === null) {
+      console.log("No Saved Data!");
+      setToDos([]);
+      return;
+    }
 
-    if (storedToDoList) setToDos(storedToDoList);
-    else setToDos([]);
-  }, [localItem])
+    const storedToDos = JSON.parse(localStorage.getItem(date));
+    if (storedToDos)
+      setToDos(storedToDos);
+    else
+      setToDos([]);
+    console.log("Loaded List");
+  }
 
-  useEffect(() => {
-    localStorage.setItem(localItem, JSON.stringify(toDos));
-  }, [toDos])
-
-  useEffect(() => {
-    const newDate = newTask.dueDate;
-    console.log(newDate);
-    const storedToDoList = JSON.parse(localStorage.getItem(newDate));
+  const AddNewTask = () => {
+    const { name, dueDate, dueTime, priority } = newTask;
+    const storedToDoList = JSON.parse(localStorage.getItem(dueDate));
     let toDoList = [];
 
-    if (storedToDoList) toDoList = toDoList;
-    else toDoList = [];
+    if (storedToDoList) toDoList = storedToDoList;
 
     toDoList.push(newTask);
-    localStorage.setItem(newDate, JSON.stringify(toDoList));
+    
+    localStorage.setItem(dueDate, JSON.stringify(toDoList));
 
+    if (dueDate == date) setToDos(toDoList);
+    console.log("Added New Task");
+  }
+
+  // Load toDos whenever date changes
+  useEffect(() => {
+    LoadToDos();
+  }, [date])
+
+  // Load and save toDos when new tasks are added
+  useEffect(() => {
+    if (Object.entries(newTask).length !== 0) AddNewTask();
   }, [newTask])
 
   return (

@@ -4,38 +4,35 @@ import { Datetime } from './Components'
 import GlobalStyle from './GlobalStyles'
 import moment from 'moment'
 
-import {React, useState, useEffect} from 'react'
+import { React, useState, useEffect } from 'react'
 
 function App() {
 
-  const [date,setDate] = useState('');
-  const [day,setDay] = useState('');
+  const [date, setDate] = useState('');
+  const [day, setDay] = useState('');
   const [dayCount, setDayCount] = useState(0);
 
-  useEffect(()=> {
+  useEffect(() => {
     setDay(moment().format('dddd'));
     setDate(moment().format('LL'));
-  },[])
+  }, [])
 
-  useEffect(()=>{
-    setDay(moment().add(dayCount,'days').format('dddd'));
-    setDate(moment().add(dayCount,'days').format('LL'));
-  },[dayCount])
+  useEffect(() => {
+    setDay(moment().add(dayCount, 'days').format('dddd'));
+    setDate(moment().add(dayCount, 'days').format('LL'));
+  }, [dayCount])
 
-  const handleBack = () => {
-    setDayCount(dayCount-1);
-  }
+  const handleBack = () => setDayCount(dayCount - 1);
 
-  const handleFront = () => {
-    setDayCount(dayCount+1);
-  }
+
+  const handleFront = () => setDayCount(dayCount + 1);
 
   return (
     <>
-      <GlobalStyle/>
+      <GlobalStyle />
       <Container>
-        <Datetime day={day} date={date} handleBack={handleBack} handleFront={handleFront}/>
-        <DayPanel localItem={date}/>
+        <Datetime day={day} date={date} handleBack={handleBack} handleFront={handleFront} />
+        <DayPanel date={date} />
       </Container>
     </>
   );
