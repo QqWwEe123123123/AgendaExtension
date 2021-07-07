@@ -8,6 +8,10 @@ const DayPanel = ({ date }) => {
   const [toDos, setToDos] = useState([]);
   const [newTask, setNewTask] = useState({});
 
+  const SaveTask = (dueDate, toDoList) => {
+    localStorage.setItem(dueDate, JSON.stringify(toDoList));
+  }
+
   const LoadToDos = () => {
     if (localStorage.getItem(date) === null) {
       console.log("No Saved Data!");
@@ -32,7 +36,7 @@ const DayPanel = ({ date }) => {
 
     toDoList.push(newTask);
     
-    localStorage.setItem(dueDate, JSON.stringify(toDoList));
+    SaveTask(dueDate, toDoList);
 
     if (dueDate == date) setToDos(toDoList);
     console.log("Added New Task");
@@ -51,7 +55,7 @@ const DayPanel = ({ date }) => {
   return (
     <div>
       <AddTask setNewTask={setNewTask} />
-      {toDos !== null ? <Tasks toDos={toDos} setToDos={setToDos} /> : <></>}
+      {toDos !== null ? <Tasks toDos={toDos} setToDos={setToDos} SaveTask={SaveTask}/> : <></>}
     </div>
   )
 }

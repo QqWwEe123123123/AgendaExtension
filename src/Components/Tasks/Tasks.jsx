@@ -2,7 +2,7 @@ import React from 'react'
 import { Task } from '../../Components'
 import {Container} from './Tasks.elements'
 
-const Tasks = ({ toDos, setToDos }) => {
+const Tasks = ({ toDos, setToDos, SaveTask }) => {
 
     const handleComplete = (task) => {
         toDos.forEach(t => {
@@ -11,6 +11,7 @@ const Tasks = ({ toDos, setToDos }) => {
             }
         })
         setToDos([...toDos]);
+        SaveTask(task.dueDate,toDos);
     }
 
     const handleDelete = (task) => {
@@ -18,9 +19,10 @@ const Tasks = ({ toDos, setToDos }) => {
         toDos.splice(taskIDX, 1);
 
         setToDos([...toDos]);
+        SaveTask(task.dueDate,toDos);
     }
 
-    toDos = sort_by_priority(toDos);
+    toDos = sortByPriority(toDos);
     return (
         <Container>
             {toDos.map(task => {
@@ -30,7 +32,7 @@ const Tasks = ({ toDos, setToDos }) => {
     )
 }
 
-function sort_by_priority(list) {
+function sortByPriority(list) {
     let sortedList = [];
     let tempList = [];
 

@@ -135,6 +135,18 @@ const AddTask = ({ setNewTask }) => {
       }));
   }
 
+  const HandleInput = event => {
+    const { value, maxLength } = event.target;
+    const message = value.slice(0, maxLength);
+
+    setTask(prev => (
+      {
+        ...prev,
+        name: event.target.value
+      }
+    ))
+  }
+
   return (
     <>
       <Container>
@@ -146,7 +158,8 @@ const AddTask = ({ setNewTask }) => {
             type="text"
             value={task.name}
             placeholder="Add a Task"
-            onChange={(event) => { setTask(prev => ({ ...prev, name: event.target.value })) }}
+            onChange={HandleInput}
+            maxLength="14"
           />
 
           <Icon
