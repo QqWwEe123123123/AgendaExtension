@@ -1,4 +1,17 @@
-### Local Testing
+### To run
+
+* You'll need to have [git](https://git-scm.com/) and [node](https://nodejs.org/en/) installed in your system.
+* Fork and clone the project:
+
+```
+> $ git clone https://github.com/QqWwEe123123123/Time-Wise.git
+```
+
+Then install the dependencies:
+
+```
+ npm install
+```
 
 Runs the app in the development mode.<br>
 
