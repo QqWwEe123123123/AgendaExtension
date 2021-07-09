@@ -14,7 +14,7 @@ import {
   LargeSec,
   TextBox,
   BigTextBox,
-  Icon,
+  IconWrapper,
 } from './Task.elements'
 
 const Task = ({ task, handleComplete, handleDelete, complete }) => {
@@ -28,7 +28,7 @@ const Task = ({ task, handleComplete, handleDelete, complete }) => {
 
   return (
     <Container color={handleColor}>
-      <SmallSec>
+      <SmallSec style={{ justifyContent: 'flex-start' }}>
         <TextBox>{task.dueTime}</TextBox>
       </SmallSec>
 
@@ -37,14 +37,14 @@ const Task = ({ task, handleComplete, handleDelete, complete }) => {
       </ LargeSec>
 
       <SmallSec >
-        <Icon onClick={() => handleDelete(task)}>
-          {<BsFillTrashFill size="1.6em" />}
-        </Icon>
-        <Icon onClick={() => handleComplete(task)}>
-          {complete ? <RiCheckboxCircleFill size="2em" /> : <RiCheckboxBlankCircleLine size="2em" />}
-        </Icon>
+        <IconWrapper onClick={() => handleDelete(task)}>
+          <BsFillTrashFill size="1.2em"/>
+        </IconWrapper>
+        <IconWrapper onClick={() => handleComplete(task)}>
+          {complete ? <RiCheckboxCircleFill size="1.5em" /> : <RiCheckboxBlankCircleLine size="1.5em" />}
+        </IconWrapper>
       </SmallSec>
-    </Container>
+    </Container >
   )
 }
 

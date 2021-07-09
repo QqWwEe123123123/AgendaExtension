@@ -1,5 +1,5 @@
 import React from 'react'
-import { Task } from '../../Components'
+import { Task } from '..'
 import {Container} from './Tasks.elements'
 
 const Tasks = ({ toDos, setToDos, SaveTask }) => {
@@ -22,7 +22,7 @@ const Tasks = ({ toDos, setToDos, SaveTask }) => {
         SaveTask(task.dueDate,toDos);
     }
 
-    toDos = sortByPriority(toDos);
+    toDos = SortByPriority(toDos);
     return (
         <Container>
             {toDos.map(task => {
@@ -32,7 +32,7 @@ const Tasks = ({ toDos, setToDos, SaveTask }) => {
     )
 }
 
-function sortByPriority(list) {
+function SortByPriority(list) {
     let sortedList = [];
     let tempList = [];
 

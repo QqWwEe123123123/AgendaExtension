@@ -1,20 +1,20 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  border: 1px solid;
-  margin-top: 20px;
-  border-radius: 100px;
+  border-radius: 5px;
   background-color: ${({ color }) => color};
   height: 2.5rem;
+  width: 20em;
+  margin: 0.2em;
+
+  box-shadow: rgba(0, 0, 0, 0.10) 0px 9px 28px, rgba(26, 18, 18, 0.07) 0px 5px 10px;
+
   display: flex;
-  justify-content: space-between;
-  &:hover {
-    box-shadow: 8px 2px 21px thistle;
-  }
+  align-items: center;
 `
 export const LargeSec = styled.div`
-  border-radius: 100px;
-  width: 6em;
+
+  width: 8em;
   height: 2em;
   margin: auto;
   float: left;
@@ -23,7 +23,7 @@ export const LargeSec = styled.div`
 `
 
 export const SmallSec = styled.div`
-  border-radius: 100px;
+
   width: 5em;
   height: 2em;
   float: left;
@@ -45,7 +45,7 @@ export const TextBox = styled.h6`
 export const BigTextBox = styled.h6`
   font-size: 13px;
 `
-export const Icon = styled.div`
+export const IconWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   cursor: pointer;

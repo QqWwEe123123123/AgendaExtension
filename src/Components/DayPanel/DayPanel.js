@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from 'react'
 
-import { Tasks } from '../../Components'
-import { AddTask } from '../../Components'
+import { Tasks } from '..'
+import { AddTask } from '..'
 
 const DayPanel = ({ date }) => {
 
@@ -38,7 +38,7 @@ const DayPanel = ({ date }) => {
     
     SaveTask(dueDate, toDoList);
 
-    if (dueDate == date) setToDos(toDoList);
+    if (dueDate === date) setToDos(toDoList);
     console.log("Added New Task");
   }
 

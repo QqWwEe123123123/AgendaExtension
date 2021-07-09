@@ -17,8 +17,7 @@ export const Container = styled.div`
   
   margin-right: auto;
   margin-left: auto;
-  padding-right: 15px;
-  padding-left: 15px;
+  /* padding: 0px 15px; */
   justify-content: center;
   position: relative;
 

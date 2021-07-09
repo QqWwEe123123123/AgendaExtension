@@ -28,6 +28,7 @@ export const TextContainer = styled.div`
 export const Container = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
 `
 
 export const Icon = styled.div`
@@ -109,13 +110,18 @@ export const Button = styled.input`
   color: white;
   font-weight: 400;
   font-size: 16px;
-  box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
   transition: background 0.2s ease,color 0.2s ease,box-shadow 0.2s ease;
 
   :hover{
     background-color: ${({ HLcolor }) => HLcolor};
-    box-shadow: 0 6px 20px rgb(0 118 255 / 23%);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
     color: #000;
+  }
+
+  :active {
+    box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1);
+    transform: translateY(2px);
   }
 `
 
