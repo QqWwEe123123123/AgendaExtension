@@ -1,13 +1,21 @@
 import React from 'react'
 import { MdKeyboardArrowRight, MdKeyboardArrowLeft } from 'react-icons/md'
 
-import { Container, Titles, DateText, Bigsec, Smallsec, DateContainer, Icon } from './Datetime.elements'
+import {
+  Container,
+  Titles,
+  DateText,
+  Bigsec,
+  Smallsec,
+  DateContainer,
+  Icon
+} from './Datetime.elements'
 
-const Datetime = ({ day, date, handleBack,handleFront }) => {
+const Datetime = ({ day, date, handleBack, handleFront }) => {
   return (
     <Container>
       <Icon >
-        <MdKeyboardArrowLeft onClick={handleBack} size="2em"/>
+        <MdKeyboardArrowLeft onClick={handleBack} size="2em" />
       </Icon>
       <DateContainer>
         <Bigsec>
@@ -18,7 +26,7 @@ const Datetime = ({ day, date, handleBack,handleFront }) => {
         </Smallsec>
       </DateContainer>
       <Icon >
-        <MdKeyboardArrowRight onClick={handleFront} size="2em"/>
+        <MdKeyboardArrowRight onClick={handleFront} size="2em" />
       </Icon>
     </Container >
   )
