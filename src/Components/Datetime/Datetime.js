@@ -15,7 +15,7 @@ const Datetime = ({ day, date, handleBack, handleFront }) => {
   return (
     <Container>
       <Icon >
-        <MdKeyboardArrowLeft onClick={handleBack} size="2em" />
+        <MdKeyboardArrowLeft onClick={handleBack} size="2em" color="#64c3f9"/>
       </Icon>
       <DateContainer>
         <Bigsec>
@@ -26,7 +26,7 @@ const Datetime = ({ day, date, handleBack, handleFront }) => {
         </Smallsec>
       </DateContainer>
       <Icon >
-        <MdKeyboardArrowRight onClick={handleFront} size="2em" />
+        <MdKeyboardArrowRight onClick={handleFront} size="2em" color="#64c3f9"/>
       </Icon>
     </Container >
   )

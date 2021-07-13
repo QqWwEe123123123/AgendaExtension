@@ -112,13 +112,29 @@ const AddTask = ({ setNewTask }) => {
     }
   );
 
-  const FormatDate = (date) => date.replace(/-/g, '\/')
+  const FormatDate = (date) => date.replace(/-/g, '\/');
+
+  const FormatTime = (dueTime) => {
+    // format time to a 12 hour time
+    let HH = dueTime.substr(0, 2);
+    let MM = dueTime.substr(3, 2);
+    let meridiem = "AM";
+
+    if (HH >= 12) {
+      meridiem  = "PM";
+      HH = HH % 12;
+    }
+    
+    const time = HH + ':' + MM + ' ' + meridiem;
+    return time;
+  }
 
   const HandleNewTask = () => {
+    console.log(task.dueTime);
     let obj = {
       name: task.name,
       dueDate: dateFormat(FormatDate(task.dueDate), "longDate"),
-      dueTime: task.dueTime,
+      dueTime: FormatTime(task.dueTime),
       priority: task.priority
     };
     setNewTask(obj);
@@ -141,7 +157,7 @@ const AddTask = ({ setNewTask }) => {
     setTask(prev => (
       {
         ...prev,
-        name: event.target.value
+        name: message
       }
     ))
   }
@@ -158,7 +174,7 @@ const AddTask = ({ setNewTask }) => {
             value={task.name}
             placeholder="Add a Task"
             onChange={HandleInput}
-            maxLength="14"
+            maxLength="20"
           />
 
           <Icon

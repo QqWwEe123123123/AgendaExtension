@@ -22,12 +22,12 @@ export const Smallsec = styled.div`
 
 export const Titles = styled.h1`
   font-size: 15px;
-  font-weight: bold;
+  font-weight: 500;
 `
 
 export const DateText = styled.h2`
   font-size: 12px;
-  font-weight: normal;
+  font-weight: 400;
 `
 
 export const Container = styled.div`
