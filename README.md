@@ -1,4 +1,4 @@
-### To run
+### To Run The App In Development Mode
 
 * You'll need to have [git](https://git-scm.com/) and [node](https://nodejs.org/en/) installed in your system.
 * Fork and clone the project:
@@ -12,8 +12,6 @@ Then install the dependencies:
 ```
  npm install
 ```
-
-Runs the app in the development mode.<br>
 
 Run `npm start`in terminal. <br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
