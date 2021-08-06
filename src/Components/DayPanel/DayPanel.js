@@ -2,12 +2,16 @@ import { React, useEffect, useState } from 'react'
 
 import { Tasks } from '..'
 import { AddTask } from '..'
+import { AddNewTask } from '..'
+
 
 const DayPanel = ({ date }) => {
 
   const [toDos, setToDos] = useState([]);
   const [newTask, setNewTask] = useState({});
+  const [categories, setCategories] = useState([]);
 
+  // localStorage
   const SaveTask = (dueDate, toDoList) => {
     localStorage.setItem(dueDate, JSON.stringify(toDoList));
   }
@@ -27,7 +31,7 @@ const DayPanel = ({ date }) => {
     console.log("Loaded List");
   }
 
-  const AddNewTask = () => {
+  const SaveNewTask = () => {
     const { name, dueDate, dueTime, priority } = newTask;
     const storedToDoList = JSON.parse(localStorage.getItem(dueDate));
     let toDoList = [];
@@ -49,14 +53,15 @@ const DayPanel = ({ date }) => {
 
   // Load and save toDos when new tasks are added
   useEffect(() => {
-    if (Object.entries(newTask).length !== 0) AddNewTask();
+    if (Object.entries(newTask).length !== 0) SaveNewTask();
   }, [newTask])
 
   return (
-    <div>
-      <AddTask setNewTask={setNewTask} />
+    <>
       {toDos !== null ? <Tasks toDos={toDos} setToDos={setToDos} SaveTask={SaveTask}/> : <></>}
-    </div>
+      {/* <AddTask setNewTask={setNewTask} /> */}
+      <AddNewTask setNewTask={setNewTask} categories={categories} setCategories={setCategories}/>
+    </>
   )
 }
 

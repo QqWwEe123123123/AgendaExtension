@@ -36,9 +36,9 @@ const Task = ({ task, handleComplete, handleDelete, complete }) => {
         <BigTextWrapper>{task.name}</BigTextWrapper>
         <SmallTextWrapper>{task.dueTime}</SmallTextWrapper>
       </LargeSec>
-      {/* <IconWrapper onClick={() => handleDelete(task)}>
+      <IconWrapper onClick={() => handleDelete(task)}>
           {<BsFillTrashFill size="1.6em" />}
-      </IconWrapper> */}
+      </IconWrapper>
 
     </Container>
   )

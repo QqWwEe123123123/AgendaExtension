@@ -27,13 +27,14 @@ export const Container = styled.div`
   justify-content: center;
   position: relative;
 
-  border: 2px solid;
+  border: 2px solid #b7b7b7;
 
   margin-top: 5%;
 
   // for testing purposes
   @media (max-width: 768px) {
     margin-top: 0%;
+    border: 0;
   }
 `
 
