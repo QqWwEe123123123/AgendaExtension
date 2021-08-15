@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Select from "react-dropdown-select";
 
 import {
@@ -22,6 +22,8 @@ import {
 
 import { TiPlus } from 'react-icons/ti';
 import { IoIosArrowForward } from 'react-icons/io';
+import Aos from 'aos'
+import 'aos/dist/aos.css/'
 
 let dateFormat = require('dateformat');
 let now = new Date();
@@ -57,11 +59,17 @@ const AddNewTaskButton = ({ HandleNewTask }) => {
 
 const AddTaskPanel = ({ task, setTask, categories, setCategories, HandleNewTask }) => {
 
+  const [priorityBntSelected, setPriorityBntSelected] = useState(task.priority);
   const dateTimeStyle = {
     position: 'relative',
     top: '10px',
     padding: '5px'
   }
+
+  useEffect(() => {
+    //Animate on Scroll
+    Aos.init({ duration: 1000, once: true });
+  }, [])
 
   const PriorityButton = ({ name, id, Bcolor, color, highlight }) => {
 
@@ -76,9 +84,6 @@ const AddTaskPanel = ({ task, setTask, categories, setCategories, HandleNewTask 
     HandleColor();
     return (
       <InputButtonWrapper
-        Bcolor={Bcolor}
-        color={color}
-        onClick={() => setTask(prev => ({ ...prev, priority: id }))}
         Bcolor={setBcolor}
         color={setColor}
         highlight={highlight}
@@ -86,12 +91,14 @@ const AddTaskPanel = ({ task, setTask, categories, setCategories, HandleNewTask 
           setTask(prev => ({ ...prev, priority: id }));
           setPriorityBntSelected(id);
         }}
-      />
+      >
+        {name}
+      </InputButtonWrapper>
     )
-      }
+  }
 
   return (
-    <Panel>
+    <Panel data-aos='fade-up'>
       <TitleWrapper>
         <Title>Create New Task</Title>
       </TitleWrapper>
@@ -176,19 +183,22 @@ const AddTaskPanel = ({ task, setTask, categories, setCategories, HandleNewTask 
           name="High"
           Bcolor="#fe8687a9"
           color="#990000"
-          id="HIGH" />
+          id="HIGH"
+          highlight="#fe8687ff" />
 
         <PriorityButton
           name="Medium"
           Bcolor="#f2bf89a8"
           color="#b45f06"
-          id="MEDIUM" />
+          id="MEDIUM"
+          highlight="#f2bf89ff" />
 
         <PriorityButton
           name="Low"
           Bcolor="#64c3f9a8"
           color="#0b5394"
-          id="LOW" />
+          id="LOW"
+          highlight="#64c3f9ff" />
       </InputButtonContainer>
 
       <AddNewTaskButton HandleNewTask={HandleNewTask} />
@@ -198,7 +208,7 @@ const AddTaskPanel = ({ task, setTask, categories, setCategories, HandleNewTask 
 
 const AddNewTask = ({ setNewTask, categories, setCategories }) => {
 
-  const [newTaskPannel, setNewTaskPannel] = useState(1);
+  const [newTaskPannel, setNewTaskPannel] = useState(0);
   const [task, setTask] = useState(
     {
       name: '',
