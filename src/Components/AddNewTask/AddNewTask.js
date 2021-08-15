@@ -63,17 +63,32 @@ const AddTaskPanel = ({ task, setTask, categories, setCategories, HandleNewTask 
     padding: '5px'
   }
 
-  const PriorityButton = ({ name, id, Bcolor, color }) => {
+  const PriorityButton = ({ name, id, Bcolor, color, highlight }) => {
+
+    let setBcolor = Bcolor;
+    let setColor = color;
+    const HandleColor = () => {
+      if (priorityBntSelected === id) {
+        setBcolor = highlight;
+        setColor = "#fff";
+      }
+    }
+    HandleColor();
     return (
       <InputButtonWrapper
         Bcolor={Bcolor}
         color={color}
         onClick={() => setTask(prev => ({ ...prev, priority: id }))}
-      >
-        {name}
-      </InputButtonWrapper>
+        Bcolor={setBcolor}
+        color={setColor}
+        highlight={highlight}
+        onClick={() => {
+          setTask(prev => ({ ...prev, priority: id }));
+          setPriorityBntSelected(id);
+        }}
+      />
     )
-  }
+      }
 
   return (
     <Panel>
@@ -120,8 +135,8 @@ const AddTaskPanel = ({ task, setTask, categories, setCategories, HandleNewTask 
             onCreateNew={(values) => {
               setCategories(prev => ([...prev, values]))
             }}
-            onChange={(value) => setTask(prev => ({ ...prev, category: value[0].value })) }
-            
+            onChange={(value) => setTask(prev => ({ ...prev, category: value[0].value }))}
+
           />
         </InputWrapper>
       </InputContainer>
@@ -133,7 +148,7 @@ const AddTaskPanel = ({ task, setTask, categories, setCategories, HandleNewTask 
             <InputDateTime
               type="date"
               placeholder="YYYY-MM-DD"
-              onChange={(event) => setTask(prev => ({ ...prev, dueDate: event.target.value })) }
+              onChange={(event) => setTask(prev => ({ ...prev, dueDate: event.target.value }))}
               value={task.dueDate}
             />
           </InputWrapper>

@@ -49,7 +49,6 @@ export const Panel = styled.div`
   flex-direction: column;
   align-items: center;
 `
-
 export const TitleWrapper = styled.div`
   width: 100%;
   padding: 20px;
@@ -155,4 +154,10 @@ export const InputButtonWrapper = styled.div`
   font-size: 12px;
   font-weight: 400px;
   color: ${({color}) => color};
+
+  &:hover {
+    background: ${({highlight}) => highlight};
+    color: white;
+  }
+  transition: all 0.2s ease-out;;
 `
