@@ -20,7 +20,6 @@ import {
   InputButtonWrapper,
 } from './AddNewTask.elements'
 
-import { TiPlus } from 'react-icons/ti';
 import { IoIosArrowForward } from 'react-icons/io';
 import Aos from 'aos'
 import 'aos/dist/aos.css/'
@@ -28,28 +27,12 @@ import 'aos/dist/aos.css/'
 let dateFormat = require('dateformat');
 let now = new Date();
 
-const NewTaskButton = ({ setNewTaskPannel }) => {
-  return (
-    <NewTaskContainer>
-      <NewTaskWrapper onClick={() => setNewTaskPannel(1)}>
-        <TiPlus />
-        <NewTaskText>Task</NewTaskText>
-      </NewTaskWrapper>
-    </NewTaskContainer>
-  )
-}
-
 const AddNewTaskButton = ({ HandleNewTask }) => {
   return (
     <NewTaskContainer style={{ justifyContent: 'center' }}>
       <NewTaskWrapper
         onClick={() => HandleNewTask()}
-        style={{
-          width: '30%',
-          borderRadius: '5px',
-          padding: '15px 0px',
-          marginTop: '5px'
-        }}>
+      >
         <NewTaskText>Create Task</NewTaskText>
         <IoIosArrowForward />
       </NewTaskWrapper>
@@ -206,9 +189,8 @@ const AddTaskPanel = ({ task, setTask, categories, setCategories, HandleNewTask 
   )
 }
 
-const AddNewTask = ({ setNewTask, categories, setCategories }) => {
+const AddNewTask = ({ setNewTask, categories, setCategories, setNewTaskPannel }) => {
 
-  const [newTaskPannel, setNewTaskPannel] = useState(0);
   const [task, setTask] = useState(
     {
       name: '',
@@ -280,15 +262,13 @@ const AddNewTask = ({ setNewTask, categories, setCategories }) => {
 
   return (
     <>
-      <NewTaskButton setNewTaskPannel={setNewTaskPannel} />
-      {newTaskPannel ?
-        <AddTaskPanel
-          task={task}
-          setTask={setTask}
-          HandleNewTask={HandleNewTask}
-          categories={categories}
-          setCategories={setCategories}
-        /> : <> </>}
+      <AddTaskPanel
+        task={task}
+        setTask={setTask}
+        HandleNewTask={HandleNewTask}
+        categories={categories}
+        setCategories={setCategories}
+      />
     </>
   )
 }

@@ -4,12 +4,27 @@ import { Tasks } from '..'
 import { AddTask } from '..'
 import { AddNewTask } from '..'
 
+import { TiPlus } from 'react-icons/ti';
+
+import { NewTaskContainer, NewTaskWrapper, NewTaskText } from './DayPanel.elements'
+
+const NewTaskButton = ({ setNewTaskPannel }) => {
+  return (
+    <NewTaskContainer>
+      <NewTaskWrapper onClick={() => setNewTaskPannel(1)}>
+        <TiPlus />
+        <NewTaskText>Task</NewTaskText>
+      </NewTaskWrapper>
+    </NewTaskContainer>
+  )
+}
 
 const DayPanel = ({ date }) => {
 
   const [toDos, setToDos] = useState([]);
   const [newTask, setNewTask] = useState({});
   const [categories, setCategories] = useState([]);
+  const [newTaskPannel, setNewTaskPannel] = useState(0);
 
   // localStorage
   const SaveTask = (dueDate, toDoList) => {
@@ -39,7 +54,7 @@ const DayPanel = ({ date }) => {
     if (storedToDoList) toDoList = storedToDoList;
 
     toDoList.push(newTask);
-    
+
     SaveTask(dueDate, toDoList);
 
     if (dueDate === date) setToDos(toDoList);
@@ -58,9 +73,16 @@ const DayPanel = ({ date }) => {
 
   return (
     <>
-      {toDos !== null ? <Tasks toDos={toDos} setToDos={setToDos} SaveTask={SaveTask}/> : <></>}
+      {toDos !== null ? <Tasks toDos={toDos} setToDos={setToDos} SaveTask={SaveTask} /> : <></>}
       {/* <AddTask setNewTask={setNewTask} /> */}
-      <AddNewTask setNewTask={setNewTask} categories={categories} setCategories={setCategories}/>
+      <NewTaskButton setNewTaskPannel={setNewTaskPannel}/>
+      {newTaskPannel ?
+        <AddNewTask
+          setNewTask={setNewTask}
+          categories={categories}
+          setCategories={setCategories}
+          setNewTaskPannel={setNewTaskPannel}
+        /> : <> </>}
     </>
   )
 }

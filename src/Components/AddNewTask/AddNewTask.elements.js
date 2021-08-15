@@ -7,11 +7,12 @@ export const NewTaskContainer = styled.div`
   display: flex;
   justify-content: flex-end;
 `
+
 export const NewTaskWrapper = styled.div`
-  width: 25%;
-  padding: 15px;
-  border-radius: 20px;
-  margin: 20px 20px 0px 0px;
+  width: 30%;
+  padding: 15px 0px;
+  border-radius: 5px;
+  margin-top: 5px;
 
   display: flex;
   justify-content: flex-start;
@@ -32,9 +33,6 @@ export const NewTaskText = styled.h1`
   display: flex;
   align-items: center;
 `
-
-// ----------------------------------------------------
-
 export const Panel = styled.div`
   z-index: 10;
   background-color: #fff;
