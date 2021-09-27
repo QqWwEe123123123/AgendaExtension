@@ -1,5 +1,5 @@
 import React from "react";
-import { Task } from "..";
+import Task from "../Task/Task";
 import { Container } from "./Tasks.elements";
 
 const Tasks = ({ toDos, setToDos, SaveTask }) => {
@@ -22,7 +22,6 @@ const Tasks = ({ toDos, setToDos, SaveTask }) => {
   };
 
   toDos = SortByPriority(toDos);
-  console.log("quack: ", toDos);
   return (
     <Container>
       {toDos.map((task) => {
