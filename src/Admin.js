@@ -4,6 +4,19 @@ import DayView from "./Views/DayView/DayView";
 import moment from "moment";
 
 const Admin = () => {
+  // Used to flip between different pages/views
+  /* Current Pages include
+    Main Page
+    New Task Page
+  */
+  const [currentView, setCurrentView] = useState("Main Page");
+  //========================================
+  // New Task
+  //========================================
+  const [toDos, setToDos] = useState([]);
+  const [newTask, setNewTask] = useState({});
+  const [categories, setCategories] = useState([]);
+
   //========================================
   // Dates
   //========================================
@@ -28,9 +41,6 @@ const Admin = () => {
   //========================================
   // localStorage
   //========================================
-  const [toDos, setToDos] = useState([]);
-  const [newTask, setNewTask] = useState({});
-  const [categories, setCategories] = useState([]);
 
   // Save task to storage
   const SaveTask = (dueDate, toDoList) => {

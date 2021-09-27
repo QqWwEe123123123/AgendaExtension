@@ -2,6 +2,7 @@ import React from "react";
 
 import DataTime from "./DayViewComponents/Datetime/Datetime";
 import Tasks from "./DayViewComponents/Tasks/Tasks";
+import NewTaskButton from "./DayViewComponents/NewTaskButton/NewTaskButton";
 
 const DayView = ({
   day,
@@ -13,19 +14,17 @@ const DayView = ({
   CycleForward,
 }) => {
   return (
-    <div>
+    <>
       <DataTime
         day={day}
         date={date}
         CycleBack={CycleBack}
         CycleForward={CycleForward}
       />
-      {toDos !== null ? (
-        <Tasks toDos={toDos} setToDos={setToDos} SaveTask={SaveTask} />
-      ) : (
-        <></>
-      )}
-    </div>
+      <Tasks toDos={toDos} setToDos={setToDos} SaveTask={SaveTask} />
+
+      <NewTaskButton />
+    </>
   );
 };
 
